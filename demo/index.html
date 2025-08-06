@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>森林病虫害防治方案管理系统 - 演示版</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌲 森林病虫害防治方案管理系统</h1>
+            <p class="subtitle">简化演示版 - 防治方案核心功能展示</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('plans')">防治方案</button>
+            <button class="tab-btn" onclick="showTab('tasks')">防治任务</button>
+            <button class="tab-btn" onclick="showTab('progress')">进度统计</button>
+        </nav>
+
+        <!-- 防治方案管理 -->
+        <div id="plans" class="tab-content active">
+            <div class="section-header">
+                <h2>防治方案管理</h2>
+                <button class="btn btn-primary" onclick="showCreatePlanModal()">+ 创建方案</button>
+            </div>
+
+            <div class="plans-grid" id="plansGrid">
+                <!-- 方案卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 防治任务管理 -->
+        <div id="tasks" class="tab-content">
+            <div class="section-header">
+                <h2>防治任务管理</h2>
+                <button class="btn btn-primary" onclick="showCreateTaskModal()">+ 创建任务</button>
+            </div>
+
+            <div class="tasks-list" id="tasksList">
+                <!-- 任务列表将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 进度统计 -->
+        <div id="progress" class="tab-content">
+            <div class="section-header">
+                <h2>进度统计</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>总方案数</h3>
+                    <div class="stat-number" id="totalPlans">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>总任务数</h3>
+                    <div class="stat-number" id="totalTasks">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>已完成任务</h3>
+                    <div class="stat-number" id="completedTasks">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>完成率</h3>
+                    <div class="stat-number" id="completionRate">0%</div>
+                </div>
+            </div>
+
+            <div class="progress-chart">
+                <h3>任务状态分布</h3>
+                <div class="chart-container" id="statusChart">
+                    <!-- 简单的进度条图表 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 创建方案模态框 -->
+    <div id="createPlanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>创建防治方案</h3>
+                <span class="close" onclick="closeModal('createPlanModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="createPlanForm">
+                    <div class="form-group">
+                        <label>病虫害类型:</label>
+                        <select id="pestType" required>
+                            <option value="">请选择病虫害类型</option>
+                            <option value="松毛虫">松毛虫</option>
+                            <option value="天牛">天牛</option>
+                            <option value="蚜虫">蚜虫</option>
+                            <option value="根腐病">根腐病</option>
+                            <option value="叶枯病">叶枯病</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>方案名称:</label>
+                        <input type="text" id="planName" required placeholder="请输入方案名称">
+                    </div>
+                    <div class="form-group">
+                        <label>方案描述:</label>
+                        <textarea id="planDescription" placeholder="请输入方案描述"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>目标区域:</label>
+                        <input type="text" id="targetArea" placeholder="请输入目标区域">
+                    </div>
+                    <div class="form-group">
+                        <label>预估成本 (元):</label>
+                        <input type="number" id="estimatedCost" placeholder="请输入预估成本">
+                    </div>
+                    <div class="form-group">
+                        <label>预估工期 (天):</label>
+                        <input type="number" id="estimatedDuration" placeholder="请输入预估工期">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createPlanModal')">取消</button>
+                <button class="btn btn-primary" onclick="createPlan()">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 创建任务模态框 -->
+    <div id="createTaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>创建防治任务</h3>
+                <span class="close" onclick="closeModal('createTaskModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="createTaskForm">
+                    <div class="form-group">
+                        <label>关联方案:</label>
+                        <select id="taskPlanId" required>
+                            <option value="">请选择关联方案</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>任务名称:</label>
+                        <input type="text" id="taskName" required placeholder="请输入任务名称">
+                    </div>
+                    <div class="form-group">
+                        <label>任务描述:</label>
+                        <textarea id="taskDescription" placeholder="请输入任务描述"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>分配给:</label>
+                        <input type="text" id="assignedTo" placeholder="请输入执行人员">
+                    </div>
+                    <div class="form-group">
+                        <label>计划执行时间:</label>
+                        <input type="datetime-local" id="scheduledTime">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createTaskModal')">取消</button>
+                <button class="btn btn-primary" onclick="createTask()">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="message" class="message"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

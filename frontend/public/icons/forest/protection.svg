@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="16" r="15" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+  <path d="M16 8L12 14H20L16 8Z" fill="#0D47A1"/>
+  <path d="M16 12L10 20H22L16 12Z" fill="#1565C0"/>
+  <rect x="15" y="20" width="2" height="6" fill="#5D4037"/>
+  <path d="M16 6L14 10H18L16 6Z" fill="#0D47A1" stroke="#fff" stroke-width="1"/>
+  <text x="16" y="30" text-anchor="middle" font-size="8" fill="#0D47A1" font-weight="bold">防护</text>
+</svg>

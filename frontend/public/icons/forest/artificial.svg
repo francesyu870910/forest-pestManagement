@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="16" r="15" fill="#8BC34A" stroke="#689F38" stroke-width="2"/>
+  <path d="M16 8L12 14H20L16 8Z" fill="#33691E"/>
+  <path d="M16 12L10 20H22L16 12Z" fill="#4CAF50"/>
+  <rect x="15" y="20" width="2" height="6" fill="#5D4037"/>
+  <text x="16" y="30" text-anchor="middle" font-size="8" fill="#33691E" font-weight="bold">人工</text>
+</svg>

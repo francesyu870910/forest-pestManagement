@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>森林病虫害防治数字化管理系统</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏导航 -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>🌲 森林数字化防治系统</h2>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showModule('dashboard')">
+                        <i class="icon">📊</i>
+                        <span>系统概览</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('pest-identification')">
+                        <i class="icon">🔍</i>
+                        <span>病虫害识别</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('treatment-plans')">
+                        <i class="icon">📋</i>
+                        <span>防治方案</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('treatment-tasks')">
+                        <i class="icon">✅</i>
+                        <span>防治任务</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('pesticide-management')">
+                        <i class="icon">🧪</i>
+                        <span>药剂管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('effect-evaluation')">
+                        <i class="icon">📈</i>
+                        <span>效果评估</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('prediction-warning')">
+                        <i class="icon">⚠️</i>
+                        <span>预测预警</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('forest-resources')">
+                        <i class="icon">🌳</i>
+                        <span>森林资源</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('knowledge-base')">
+                        <i class="icon">📚</i>
+                        <span>知识库</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showModule('user-management')">
+                        <i class="icon">👥</i>
+                        <span>用户管理</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h1 id="pageTitle">系统概览</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">管理员</span>
+                        <div class="user-avatar">👤</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 系统概览模块 -->
+                <div id="dashboard" class="module active">
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-info">
+                                <h3 id="totalPlans">0</h3>
+                                <p>防治方案</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <h3 id="totalTasks">0</h3>
+                                <p>防治任务</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🧪</div>
+                            <div class="stat-info">
+                                <h3 id="totalPesticides">0</h3>
+                                <p>药剂种类</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-info">
+                                <h3 id="completionRate">0%</h3>
+                                <p>完成率</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-charts">
+                        <div class="chart-container">
+                            <h3>任务状态分布</h3>
+                            <div id="taskStatusChart" class="chart"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>最近活动</h3>
+                            <div id="recentActivities" class="activity-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 病虫害识别模块 -->
+                <div id="pest-identification" class="module">
+                    <div class="module-header">
+                        <h2>病虫害识别</h2>
+                        <button class="btn btn-primary" onclick="showIdentificationModal()">+ 新识别</button>
+                    </div>
+                    
+                    <div class="identification-methods">
+                        <div class="method-card">
+                            <h3>图片识别</h3>
+                            <p>上传病虫害图片进行AI识别</p>
+                            <button class="btn btn-primary" onclick="showImageUpload()">上传图片</button>
+                        </div>
+                        <div class="method-card">
+                            <h3>症状识别</h3>
+                            <p>根据症状描述进行匹配识别</p>
+                            <button class="btn btn-primary" onclick="showSymptomInput()">输入症状</button>
+                        </div>
+                    </div>
+
+                    <div class="identification-history">
+                        <h3>识别历史</h3>
+                        <div id="identificationList" class="identification-list"></div>
+                    </div>
+                </div>
+
+                <!-- 防治方案模块 -->
+                <div id="treatment-plans" class="module">
+                    <div class="module-header">
+                        <h2>防治方案管理</h2>
+                        <button class="btn btn-primary" onclick="showCreatePlanModal()">+ 创建方案</button>
+                    </div>
+                    
+                    <div class="filter-bar">
+                        <select id="planStatusFilter" onchange="filterPlans()">
+                            <option value="">全部状态</option>
+                            <option value="DRAFT">草稿</option>
+                            <option value="ACTIVE">执行中</option>
+                            <option value="COMPLETED">已完成</option>
+                        </select>
+                        <input type="text" id="planSearchInput" placeholder="搜索方案..." onkeyup="searchPlans()">
+                    </div>
+
+                    <div id="plansList" class="plans-grid"></div>
+                </div>
+
+                <!-- 防治任务模块 -->
+                <div id="treatment-tasks" class="module">
+                    <div class="module-header">
+                        <h2>防治任务管理</h2>
+                        <button class="btn btn-primary" onclick="showCreateTaskModal()">+ 创建任务</button>
+                    </div>
+                    
+                    <div class="filter-bar">
+                        <select id="taskStatusFilter" onchange="filterTasks()">
+                            <option value="">全部状态</option>
+                            <option value="PENDING">待执行</option>
+                            <option value="ASSIGNED">已分配</option>
+                            <option value="IN_PROGRESS">执行中</option>
+                            <option value="COMPLETED">已完成</option>
+                        </select>
+                        <select id="taskPlanFilter" onchange="filterTasks()">
+                            <option value="">全部方案</option>
+                        </select>
+                    </div>
+
+                    <div id="tasksList" class="tasks-list"></div>
+                </div>
+
+                <!-- 药剂管理模块 -->
+                <div id="pesticide-management" class="module">
+                    <div class="module-header">
+                        <h2>药剂管理</h2>
+                        <button class="btn btn-primary" onclick="showAddPesticideModal()">+ 添加药剂</button>
+                    </div>
+                    
+                    <div class="pesticide-stats">
+                        <div class="stat-card">
+                            <h3 id="totalPesticideTypes">0</h3>
+                            <p>药剂种类</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="lowStockCount">0</h3>
+                            <p>库存不足</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="expiringCount">0</h3>
+                            <p>即将过期</p>
+                        </div>
+                    </div>
+
+                    <div id="pesticidesList" class="pesticides-grid"></div>
+                </div>
+
+                <!-- 效果评估模块 -->
+                <div id="effect-evaluation" class="module">
+                    <div class="module-header">
+                        <h2>效果评估</h2>
+                        <button class="btn btn-primary" onclick="showCreateEvaluationModal()">+ 新建评估</button>
+                    </div>
+                    
+                    <div id="evaluationsList" class="evaluations-list"></div>
+                </div>
+
+                <!-- 预测预警模块 -->
+                <div id="prediction-warning" class="module">
+                    <div class="module-header">
+                        <h2>预测预警</h2>
+                        <button class="btn btn-primary" onclick="showCreatePredictionModal()">+ 新建预测</button>
+                    </div>
+                    
+                    <div class="warning-alerts">
+                        <div id="alertsList" class="alerts-list"></div>
+                    </div>
+
+                    <div id="predictionsList" class="predictions-list"></div>
+                </div>
+
+                <!-- 森林资源模块 -->
+                <div id="forest-resources" class="module">
+                    <div class="module-header">
+                        <h2>森林资源档案</h2>
+                        <button class="btn btn-primary" onclick="showAddResourceModal()">+ 添加资源</button>
+                    </div>
+                    
+                    <div id="resourcesList" class="resources-grid"></div>
+                </div>
+
+                <!-- 知识库模块 -->
+                <div id="knowledge-base" class="module">
+                    <div class="module-header">
+                        <h2>专家知识库</h2>
+                        <button class="btn btn-primary" onclick="showAddKnowledgeModal()">+ 添加知识</button>
+                    </div>
+                    
+                    <div class="knowledge-categories">
+                        <button class="category-btn active" onclick="showKnowledgeCategory('pests')">病虫害信息</button>
+                        <button class="category-btn" onclick="showKnowledgeCategory('methods')">防治方法</button>
+                        <button class="category-btn" onclick="showKnowledgeCategory('pesticides')">药剂信息</button>
+                    </div>
+
+                    <div id="knowledgeList" class="knowledge-list"></div>
+                </div>
+
+                <!-- 用户管理模块 -->
+                <div id="user-management" class="module">
+                    <div class="module-header">
+                        <h2>用户管理</h2>
+                        <button class="btn btn-primary" onclick="showAddUserModal()">+ 添加用户</button>
+                    </div>
+                    
+                    <div id="usersList" class="users-list"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 模态框容器 -->
+    <div id="modalContainer"></div>
+
+    <!-- 消息提示 -->
+    <div id="messageContainer" class="message-container"></div>
+
+    <!-- 加载脚本 -->
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/modules/dashboard.js"></script>
+    <script src="js/modules/pest-identification.js"></script>
+    <script src="js/modules/treatment-plans.js"></script>
+    <script src="js/modules/treatment-tasks.js"></script>
+    <script src="js/modules/pesticide-management.js"></script>
+    <script src="js/modules/effect-evaluation.js"></script>
+    <script src="js/modules/prediction-warning.js"></script>
+    <script src="js/modules/forest-resources.js"></script>
+    <script src="js/modules/knowledge-base.js"></script>
+    <script src="js/modules/user-management.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

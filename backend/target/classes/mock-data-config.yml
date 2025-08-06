@@ -1,0 +1,137 @@
+# 模拟数据配置文件
+mock-data:
+  # 用户数据配置
+  users:
+    admin-count: 2
+    user-count: 8
+    departments:
+      - "森林保护科"
+      - "病虫害防治科"
+      - "森林资源管理科"
+      - "技术推广科"
+      - "综合管理科"
+  
+  # 病虫害数据配置
+  pests:
+    count: 15
+    categories:
+      - "食叶害虫"
+      - "蛀干害虫"
+      - "刺吸害虫"
+      - "根部害虫"
+      - "真菌病害"
+      - "细菌病害"
+      - "病毒病害"
+    risk-levels:
+      - "低风险"
+      - "中风险"
+      - "高风险"
+      - "极高风险"
+  
+  # 药剂数据配置
+  pesticides:
+    count: 20
+    categories:
+      - "杀虫剂"
+      - "杀菌剂"
+      - "除草剂"
+      - "生物农药"
+      - "植物生长调节剂"
+    safety-levels:
+      - "低毒"
+      - "中等毒"
+      - "高毒"
+    toxicity-levels:
+      - "微毒"
+      - "低毒"
+      - "中等毒"
+      - "高毒"
+    units:
+      - "升"
+      - "千克"
+      - "克"
+      - "毫升"
+  
+  # 防治方案配置
+  treatment-plans:
+    count: 12
+    priorities:
+      - "低"
+      - "中"
+      - "高"
+      - "紧急"
+    statuses:
+      - "草稿"
+      - "待审批"
+      - "已批准"
+      - "执行中"
+      - "已完成"
+      - "已取消"
+    approval-statuses:
+      - "待审批"
+      - "已批准"
+      - "已拒绝"
+  
+  # 森林资源配置
+  forest-resources:
+    forest-farms: 3
+    forest-areas-per-farm: 4
+    forest-plots-per-area: 6
+    tree-species:
+      - "马尾松"
+      - "杉木"
+      - "桉树"
+      - "樟树"
+      - "栎树"
+      - "桦树"
+      - "柳树"
+      - "杨树"
+    area-types:
+      - "林场"
+      - "林区"
+      - "小班"
+    health-statuses:
+      - "优良"
+      - "良好"
+      - "一般"
+      - "较差"
+      - "差"
+    management-levels:
+      - "精细管理"
+      - "常规管理"
+      - "粗放管理"
+  
+  # 知识库配置
+  knowledge-base:
+    count: 25
+    types:
+      - "病虫害识别"
+      - "防治技术"
+      - "药剂使用"
+      - "设备操作"
+      - "安全防护"
+      - "法规标准"
+    categories:
+      - "基础知识"
+      - "实用技术"
+      - "案例分析"
+      - "操作指南"
+      - "安全规范"
+      - "政策法规"
+    difficulties:
+      - "初级"
+      - "中级"
+      - "高级"
+    seasons:
+      - "春季"
+      - "夏季"
+      - "秋季"
+      - "冬季"
+      - "全年"
+    regions:
+      - "华南地区"
+      - "华中地区"
+      - "华北地区"
+      - "西南地区"
+      - "东北地区"
+      - "全国通用"

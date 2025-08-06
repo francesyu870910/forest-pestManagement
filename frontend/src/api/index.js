@@ -1,0 +1,10 @@
+// 统一导出所有API接口
+export * from './auth'
+export * from './user'
+export * from './pest'
+export * from './treatment'
+export * from './pesticide'
+export * from './evaluation'
+export * from './prediction'
+export * from './forest'
+export * from './health'
